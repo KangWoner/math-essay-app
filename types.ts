@@ -43,3 +43,26 @@ export interface Submission extends Omit<SubmissionFormData, 'answers'> {
   isSavedToDrive?: boolean;
   driveSheetUrl?: string; // Google Sheet 파일 URL (시뮬레이션용)
 }
+// ========== 학생 발전 추적용 타입 ==========
+
+export interface StudentRecord {
+  id: string;
+  date: string;              // 채점 날짜
+  examInfo: string;          // 시험 정보
+  totalScore: number;        // 총점
+  maxScore: number;          // 만점
+  weaknesses: string[];      // 약점 목록
+  strengths: string[];       // 강점 목록
+  criteriaScores: {          // 채점기준별 점수
+    criterion: string;
+    score: number;
+    maxScore: number;
+  }[];
+}
+
+export interface StudentHistory {
+  studentId: string;
+  studentName: string;
+  studentEmail: string;
+  records: StudentRecord[];  // 시간순 기록들
+}
